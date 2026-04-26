@@ -1,0 +1,530 @@
+[
+  {
+    "id": "ambon",
+    "name": "Ambon",
+    "province": "Maluku",
+    "coordinates": {
+      "lat": -3.6954,
+      "lng": 128.1814
+    },
+    "description": "Kota Ambon adalah ibu kota Provinsi Maluku yang terkenal dengan keindahan alamnya.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "balikpapan",
+    "name": "Balikpapan",
+    "province": "Kalimantan Timur",
+    "coordinates": {
+      "lat": -1.2379,
+      "lng": 116.8529
+    },
+    "description": "Balikpapan adalah kota industri minyak terbesar di Kalimantan Timur.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "bandaaceh",
+    "name": "Banda Aceh",
+    "province": "Aceh",
+    "coordinates": {
+      "lat": 5.5577,
+      "lng": 95.3222
+    },
+    "description": "Banda Aceh adalah ibu kota Provinsi Aceh yang kaya akan sejarah dan budaya Islam.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "bandarlampung",
+    "name": "Bandar Lampung",
+    "province": "Lampung",
+    "coordinates": {
+      "lat": -5.3971,
+      "lng": 105.2668
+    },
+    "description": "Bandar Lampung adalah ibu kota Provinsi Lampung yang menjadi gerbang Sumatera.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "bandung",
+    "name": "Bandung",
+    "province": "Jawa Barat",
+    "coordinates": {
+      "lat": -6.9175,
+      "lng": 107.6191
+    },
+    "description": "Bandung adalah kota kreatif yang terkenal dengan kuliner dan fashion-nya.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "banjarmasin",
+    "name": "Banjarmasin",
+    "province": "Kalimantan Selatan",
+    "coordinates": {
+      "lat": -3.3194,
+      "lng": 114.5906
+    },
+    "description": "Banjarmasin dikenal sebagai Kota Seribu Sungai dengan pasar terapungnya yang terkenal.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "batam",
+    "name": "Batam",
+    "province": "Kepulauan Riau",
+    "coordinates": {
+      "lat": 1.0456,
+      "lng": 104.0305
+    },
+    "description": "Batam adalah kota industri dan perdagangan yang strategis di Kepulauan Riau.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "bekasi",
+    "name": "Bekasi",
+    "province": "Jawa Barat",
+    "coordinates": {
+      "lat": -6.2383,
+      "lng": 106.9756
+    },
+    "description": "Bekasi adalah kota satelit Jakarta yang berkembang pesat sebagai pusat industri.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "bengkulu",
+    "name": "Bengkulu",
+    "province": "Bengkulu",
+    "coordinates": {
+      "lat": -3.8004,
+      "lng": 102.2655
+    },
+    "description": "Bengkulu adalah ibu kota provinsi yang memiliki pantai indah di pesisir barat Sumatera.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "bogor",
+    "name": "Bogor",
+    "province": "Jawa Barat",
+    "coordinates": {
+      "lat": -6.5971,
+      "lng": 106.8060
+    },
+    "description": "Bogor terkenal dengan Kebun Raya dan iklimnya yang sejuk.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "cirebon",
+    "name": "Cirebon",
+    "province": "Jawa Barat",
+    "coordinates": {
+      "lat": -6.7063,
+      "lng": 108.5571
+    },
+    "description": "Cirebon adalah kota bersejarah dengan perpaduan budaya Jawa, Sunda, dan Tionghoa.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "denpasar",
+    "name": "Denpasar",
+    "province": "Bali",
+    "coordinates": {
+      "lat": -8.6705,
+      "lng": 115.2126
+    },
+    "description": "Denpasar adalah ibu kota Bali yang menjadi pusat pemerintahan dan budaya.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "depok",
+    "name": "Depok",
+    "province": "Jawa Barat",
+    "coordinates": {
+      "lat": -6.4025,
+      "lng": 106.7942
+    },
+    "description": "Depok adalah kota pendidikan yang terkenal dengan Universitas Indonesia.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "gorontalo",
+    "name": "Gorontalo",
+    "province": "Gorontalo",
+    "coordinates": {
+      "lat": 0.5435,
+      "lng": 123.0596
+    },
+    "description": "Gorontalo adalah ibu kota provinsi yang terletak di Teluk Tomini.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "jakarta",
+    "name": "Jakarta",
+    "province": "DKI Jakarta",
+    "coordinates": {
+      "lat": -6.2088,
+      "lng": 106.8456
+    },
+    "description": "Jakarta adalah ibu kota Indonesia dan pusat bisnis terbesar di Asia Tenggara.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "jambi",
+    "name": "Jambi",
+    "province": "Jambi",
+    "coordinates": {
+      "lat": -1.6101,
+      "lng": 103.6131
+    },
+    "description": "Jambi adalah ibu kota provinsi yang terkenal dengan Candi Muaro Jambi.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "jayapura",
+    "name": "Jayapura",
+    "province": "Papua",
+    "coordinates": {
+      "lat": -2.5489,
+      "lng": 140.7197
+    },
+    "description": "Jayapura adalah ibu kota Papua yang menjadi gerbang masuk ke Papua.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "kediri",
+    "name": "Kediri",
+    "province": "Jawa Timur",
+    "coordinates": {
+      "lat": -7.8181,
+      "lng": 112.0178
+    },
+    "description": "Kediri adalah kota bersejarah yang terkenal dengan industri rokok dan gula.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "kendari",
+    "name": "Kendari",
+    "province": "Sulawesi Tenggara",
+    "coordinates": {
+      "lat": -3.9450,
+      "lng": 122.5986
+    },
+    "description": "Kendari adalah ibu kota Sulawesi Tenggara yang terkenal dengan nikel.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "kupang",
+    "name": "Kupang",
+    "province": "Nusa Tenggara Timur",
+    "coordinates": {
+      "lat": -10.1718,
+      "lng": 123.6075
+    },
+    "description": "Kupang adalah ibu kota NTT yang menjadi gerbang ke Timor dan pulau-pulau sekitarnya.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "madiun",
+    "name": "Madiun",
+    "province": "Jawa Timur",
+    "coordinates": {
+      "lat": -7.6298,
+      "lng": 111.5239
+    },
+    "description": "Madiun adalah kota yang terkenal dengan pecel dan sejarah perjuangan kemerdekaan.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "magelang",
+    "name": "Magelang",
+    "province": "Jawa Tengah",
+    "coordinates": {
+      "lat": -7.4698,
+      "lng": 110.2177
+    },
+    "description": "Magelang adalah kota yang dekat dengan Candi Borobudur dan Akademi Militer.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "makassar",
+    "name": "Makassar",
+    "province": "Sulawesi Selatan",
+    "coordinates": {
+      "lat": -5.1477,
+      "lng": 119.4327
+    },
+    "description": "Makassar adalah kota terbesar di Sulawesi dan pusat perdagangan Indonesia Timur.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "malang",
+    "name": "Malang",
+    "province": "Jawa Timur",
+    "coordinates": {
+      "lat": -7.9797,
+      "lng": 112.6304
+    },
+    "description": "Malang adalah kota pendidikan dengan iklim sejuk dan banyak universitas.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "manado",
+    "name": "Manado",
+    "province": "Sulawesi Utara",
+    "coordinates": {
+      "lat": 1.4748,
+      "lng": 124.8421
+    },
+    "description": "Manado adalah ibu kota Sulawesi Utara yang terkenal dengan Bunaken dan kuliner ekstrem.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "mataram",
+    "name": "Mataram",
+    "province": "Nusa Tenggara Barat",
+    "coordinates": {
+      "lat": -8.5833,
+      "lng": 116.1167
+    },
+    "description": "Mataram adalah ibu kota NTB yang menjadi gerbang ke Lombok dan Gili.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "medan",
+    "name": "Medan",
+    "province": "Sumatera Utara",
+    "coordinates": {
+      "lat": 3.5952,
+      "lng": 98.6722
+    },
+    "description": "Medan adalah kota terbesar di Sumatera dan pusat ekonomi wilayah barat Indonesia.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "padang",
+    "name": "Padang",
+    "province": "Sumatera Barat",
+    "coordinates": {
+      "lat": -0.9471,
+      "lng": 100.4172
+    },
+    "description": "Padang adalah ibu kota Sumatera Barat yang terkenal dengan masakan Padang.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "palangkaraya",
+    "name": "Palangkaraya",
+    "province": "Kalimantan Tengah",
+    "coordinates": {
+      "lat": -2.2080,
+      "lng": 113.9294
+    },
+    "description": "Palangkaraya adalah ibu kota Kalimantan Tengah yang dikenal dengan orangutan.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "palembang",
+    "name": "Palembang",
+    "province": "Sumatera Selatan",
+    "coordinates": {
+      "lat": -2.9761,
+      "lng": 104.7754
+    },
+    "description": "Palembang adalah kota tertua di Indonesia dengan Sungai Musi dan pempek yang terkenal.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "palu",
+    "name": "Palu",
+    "province": "Sulawesi Tengah",
+    "coordinates": {
+      "lat": -0.8917,
+      "lng": 119.8707
+    },
+    "description": "Palu adalah ibu kota Sulawesi Tengah yang terletak di lembah dengan pemandangan indah.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "pangkalpinang",
+    "name": "Pangkalpinang",
+    "province": "Kepulauan Bangka Belitung",
+    "coordinates": {
+      "lat": -2.1316,
+      "lng": 106.1167
+    },
+    "description": "Pangkalpinang adalah ibu kota Babel yang terkenal dengan timah dan pantai indah.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "pekanbaru",
+    "name": "Pekanbaru",
+    "province": "Riau",
+    "coordinates": {
+      "lat": 0.5333,
+      "lng": 101.4500
+    },
+    "description": "Pekanbaru adalah ibu kota Riau yang menjadi pusat industri minyak dan kelapa sawit.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "pontianak",
+    "name": "Pontianak",
+    "province": "Kalimantan Barat",
+    "coordinates": {
+      "lat": -0.0263,
+      "lng": 109.3425
+    },
+    "description": "Pontianak adalah kota khatulistiwa yang terkenal dengan Sungai Kapuas.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "samarinda",
+    "name": "Samarinda",
+    "province": "Kalimantan Timur",
+    "coordinates": {
+      "lat": -0.5022,
+      "lng": 117.1536
+    },
+    "description": "Samarinda adalah ibu kota Kalimantan Timur yang kaya akan sumber daya alam.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "semarang",
+    "name": "Semarang",
+    "province": "Jawa Tengah",
+    "coordinates": {
+      "lat": -6.9667,
+      "lng": 110.4167
+    },
+    "description": "Semarang adalah ibu kota Jawa Tengah dengan pelabuhan penting dan Kota Lama yang bersejarah.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "serang",
+    "name": "Serang",
+    "province": "Banten",
+    "coordinates": {
+      "lat": -6.1200,
+      "lng": 106.1500
+    },
+    "description": "Serang adalah ibu kota Banten yang memiliki sejarah Kesultanan Banten.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "sidoarjo",
+    "name": "Sidoarjo",
+    "province": "Jawa Timur",
+    "coordinates": {
+      "lat": -7.4478,
+      "lng": 112.7183
+    },
+    "description": "Sidoarjo adalah kota industri yang terkenal dengan petis dan bandeng.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "solo",
+    "name": "Solo",
+    "province": "Jawa Tengah",
+    "coordinates": {
+      "lat": -7.5667,
+      "lng": 110.8167
+    },
+    "description": "Solo adalah kota budaya Jawa dengan Keraton Kasunanan dan batik yang terkenal.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "sorong",
+    "name": "Sorong",
+    "province": "Papua Barat",
+    "coordinates": {
+      "lat": -0.8833,
+      "lng": 131.2500
+    },
+    "description": "Sorong adalah kota industri minyak dan gerbang ke Raja Ampat.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "surabaya",
+    "name": "Surabaya",
+    "province": "Jawa Timur",
+    "coordinates": {
+      "lat": -7.2575,
+      "lng": 112.7521
+    },
+    "description": "Surabaya adalah kota terbesar kedua di Indonesia dan pusat industri Jawa Timur.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "tangerang",
+    "name": "Tangerang",
+    "province": "Banten",
+    "coordinates": {
+      "lat": -6.1783,
+      "lng": 106.6319
+    },
+    "description": "Tangerang adalah kota satelit Jakarta yang berkembang pesat sebagai pusat bisnis.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "tanjungpinang",
+    "name": "Tanjungpinang",
+    "province": "Kepulauan Riau",
+    "coordinates": {
+      "lat": 0.9167,
+      "lng": 104.4500
+    },
+    "description": "Tanjungpinang adalah ibu kota Kepulauan Riau dengan sejarah Kerajaan Melayu.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "tarakan",
+    "name": "Tarakan",
+    "province": "Kalimantan Utara",
+    "coordinates": {
+      "lat": 3.3000,
+      "lng": 117.6333
+    },
+    "description": "Tarakan adalah kota pulau yang terkenal dengan industri minyak dan sejarah Perang Dunia II.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "tasikmalaya",
+    "name": "Tasikmalaya",
+    "province": "Jawa Barat",
+    "coordinates": {
+      "lat": -7.3506,
+      "lng": 108.2186
+    },
+    "description": "Tasikmalaya adalah kota yang terkenal dengan kerajinan anyaman dan kelom geulis.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "tegal",
+    "name": "Tegal",
+    "province": "Jawa Tengah",
+    "coordinates": {
+      "lat": -6.8694,
+      "lng": 109.1403
+    },
+    "description": "Tegal adalah kota pelabuhan yang terkenal dengan teh poci dan ikan asin.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  },
+  {
+    "id": "ternate",
+    "name": "Ternate",
+    "province": "Maluku Utara",
+    "coordinates": {
+      "lat": 0.7833,
+      "lng": 127.3833
+    },
+    "description": "Ternate adalah pulau bersejarah yang terkenal dengan rempah-rempah dan Gunung Gamalama.",
+    "image": "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg"
+  },
+  {
+    "id": "yogyakarta",
+    "name": "Yogyakarta",
+    "province": "DI Yogyakarta",
+    "coordinates": {
+      "lat": -7.7956,
+      "lng": 110.3695
+    },
+    "description": "Yogyakarta adalah kota istimewa yang menjadi pusat budaya Jawa dan pendidikan.",
+    "image": "https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg"
+  }
+]

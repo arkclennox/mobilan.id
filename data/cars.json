@@ -1,0 +1,374 @@
+[
+  {
+    "id": "agya",
+    "brand": "Toyota",
+    "model": "Agya",
+    "fuelEfficiency": 17.1
+  },
+  {
+    "id": "alphard",
+    "brand": "Toyota",
+    "model": "Alphard",
+    "fuelEfficiency": 8.5
+  },
+  {
+    "id": "altis",
+    "brand": "Toyota",
+    "model": "Altis",
+    "fuelEfficiency": 14.8
+  },
+  {
+    "id": "avanza",
+    "brand": "Toyota",
+    "model": "Avanza",
+    "fuelEfficiency": 13.2
+  },
+  {
+    "id": "ayla",
+    "brand": "Daihatsu",
+    "model": "Ayla",
+    "fuelEfficiency": 17.3
+  },
+  {
+    "id": "baleno",
+    "brand": "Suzuki",
+    "model": "Baleno",
+    "fuelEfficiency": 15.6
+  },
+  {
+    "id": "brio",
+    "brand": "Honda",
+    "model": "Brio",
+    "fuelEfficiency": 16.8
+  },
+  {
+    "id": "brv",
+    "brand": "Honda",
+    "model": "BR-V",
+    "fuelEfficiency": 12.9
+  },
+  {
+    "id": "calya",
+    "brand": "Daihatsu",
+    "model": "Calya",
+    "fuelEfficiency": 15.8
+  },
+  {
+    "id": "camry",
+    "brand": "Toyota",
+    "model": "Camry",
+    "fuelEfficiency": 13.1
+  },
+  {
+    "id": "carry",
+    "brand": "Suzuki",
+    "model": "Carry",
+    "fuelEfficiency": 14.5
+  },
+  {
+    "id": "city",
+    "brand": "Honda",
+    "model": "City",
+    "fuelEfficiency": 15.5
+  },
+  {
+    "id": "civic",
+    "brand": "Honda",
+    "model": "Civic",
+    "fuelEfficiency": 14.5
+  },
+  {
+    "id": "confero",
+    "brand": "Wuling",
+    "model": "Confero",
+    "fuelEfficiency": 14.1
+  },
+  {
+    "id": "cortez",
+    "brand": "Wuling",
+    "model": "Cortez",
+    "fuelEfficiency": 12.5
+  },
+  {
+    "id": "crv",
+    "brand": "Honda",
+    "model": "CR-V",
+    "fuelEfficiency": 11.2
+  },
+  {
+    "id": "dmax",
+    "brand": "Isuzu",
+    "model": "D-Max",
+    "fuelEfficiency": 9.2
+  },
+  {
+    "id": "ecosport",
+    "brand": "Ford",
+    "model": "EcoSport",
+    "fuelEfficiency": 12.8
+  },
+  {
+    "id": "ertiga",
+    "brand": "Suzuki",
+    "model": "Ertiga",
+    "fuelEfficiency": 14.2
+  },
+  {
+    "id": "everest",
+    "brand": "Ford",
+    "model": "Everest",
+    "fuelEfficiency": 9.7
+  },
+  {
+    "id": "expander",
+    "brand": "Mitsubishi",
+    "model": "Expander",
+    "fuelEfficiency": 13.8
+  },
+  {
+    "id": "fiesta",
+    "brand": "Ford",
+    "model": "Fiesta",
+    "fuelEfficiency": 15.1
+  },
+  {
+    "id": "fortuner",
+    "brand": "Toyota",
+    "model": "Fortuner",
+    "fuelEfficiency": 9.5
+  },
+  {
+    "id": "freed",
+    "brand": "Honda",
+    "model": "Freed",
+    "fuelEfficiency": 13.8
+  },
+  {
+    "id": "grandlivina",
+    "brand": "Nissan",
+    "model": "Grand Livina",
+    "fuelEfficiency": 13.9
+  },
+  {
+    "id": "hilux",
+    "brand": "Toyota",
+    "model": "Hilux",
+    "fuelEfficiency": 9.3
+  },
+  {
+    "id": "hrv",
+    "brand": "Honda",
+    "model": "HR-V",
+    "fuelEfficiency": 13.7
+  },
+  {
+    "id": "ignis",
+    "brand": "Suzuki",
+    "model": "Ignis",
+    "fuelEfficiency": 16.5
+  },
+  {
+    "id": "innova",
+    "brand": "Toyota",
+    "model": "Innova",
+    "fuelEfficiency": 11.8
+  },
+  {
+    "id": "jazz",
+    "brand": "Honda",
+    "model": "Jazz",
+    "fuelEfficiency": 15.8
+  },
+  {
+    "id": "jimny",
+    "brand": "Suzuki",
+    "model": "Jimny",
+    "fuelEfficiency": 11.5
+  },
+  {
+    "id": "kicks",
+    "brand": "Nissan",
+    "model": "Kicks",
+    "fuelEfficiency": 13.4
+  },
+  {
+    "id": "kijanginnova",
+    "brand": "Toyota",
+    "model": "Kijang Innova",
+    "fuelEfficiency": 11.8
+  },
+  {
+    "id": "livina",
+    "brand": "Nissan",
+    "model": "Livina",
+    "fuelEfficiency": 13.9
+  },
+  {
+    "id": "march",
+    "brand": "Nissan",
+    "model": "March",
+    "fuelEfficiency": 16.7
+  },
+  {
+    "id": "mirage",
+    "brand": "Mitsubishi",
+    "model": "Mirage",
+    "fuelEfficiency": 17.5
+  },
+  {
+    "id": "mobilio",
+    "brand": "Honda",
+    "model": "Mobilio",
+    "fuelEfficiency": 14.3
+  },
+  {
+    "id": "navara",
+    "brand": "Nissan",
+    "model": "Navara",
+    "fuelEfficiency": 9.0
+  },
+  {
+    "id": "outlander",
+    "brand": "Mitsubishi",
+    "model": "Outlander",
+    "fuelEfficiency": 10.2
+  },
+  {
+    "id": "pajero",
+    "brand": "Mitsubishi",
+    "model": "Pajero",
+    "fuelEfficiency": 9.8
+  },
+  {
+    "id": "panther",
+    "brand": "Isuzu",
+    "model": "Panther",
+    "fuelEfficiency": 10.5
+  },
+  {
+    "id": "picanto",
+    "brand": "Kia",
+    "model": "Picanto",
+    "fuelEfficiency": 16.2
+  },
+  {
+    "id": "raize",
+    "brand": "Daihatsu",
+    "model": "Raize",
+    "fuelEfficiency": 14.5
+  },
+  {
+    "id": "ranger",
+    "brand": "Ford",
+    "model": "Ranger",
+    "fuelEfficiency": 8.9
+  },
+  {
+    "id": "rio",
+    "brand": "Kia",
+    "model": "Rio",
+    "fuelEfficiency": 15.3
+  },
+  {
+    "id": "rocky",
+    "brand": "Daihatsu",
+    "model": "Rocky",
+    "fuelEfficiency": 14.7
+  },
+  {
+    "id": "rush",
+    "brand": "Toyota",
+    "model": "Rush",
+    "fuelEfficiency": 12.1
+  },
+  {
+    "id": "seltos",
+    "brand": "Kia",
+    "model": "Seltos",
+    "fuelEfficiency": 12.8
+  },
+  {
+    "id": "sienta",
+    "brand": "Toyota",
+    "model": "Sienta",
+    "fuelEfficiency": 14.1
+  },
+  {
+    "id": "sigra",
+    "brand": "Daihatsu",
+    "model": "Sigra",
+    "fuelEfficiency": 16.1
+  },
+  {
+    "id": "sorento",
+    "brand": "Kia",
+    "model": "Sorento",
+    "fuelEfficiency": 10.1
+  },
+  {
+    "id": "sportage",
+    "brand": "Kia",
+    "model": "Sportage",
+    "fuelEfficiency": 11.5
+  },
+  {
+    "id": "swift",
+    "brand": "Suzuki",
+    "model": "Swift",
+    "fuelEfficiency": 15.9
+  },
+  {
+    "id": "terios",
+    "brand": "Daihatsu",
+    "model": "Terios",
+    "fuelEfficiency": 12.3
+  },
+  {
+    "id": "triton",
+    "brand": "Mitsubishi",
+    "model": "Triton",
+    "fuelEfficiency": 9.1
+  },
+  {
+    "id": "tucson",
+    "brand": "Hyundai",
+    "model": "Tucson",
+    "fuelEfficiency": 11.8
+  },
+  {
+    "id": "veloz",
+    "brand": "Toyota",
+    "model": "Veloz",
+    "fuelEfficiency": 13.6
+  },
+  {
+    "id": "vios",
+    "brand": "Toyota",
+    "model": "Vios",
+    "fuelEfficiency": 15.2
+  },
+  {
+    "id": "wulingair",
+    "brand": "Wuling",
+    "model": "Air",
+    "fuelEfficiency": 15.8
+  },
+  {
+    "id": "xenia",
+    "brand": "Daihatsu",
+    "model": "Xenia",
+    "fuelEfficiency": 13.5
+  },
+  {
+    "id": "xtrail",
+    "brand": "Nissan",
+    "model": "X-Trail",
+    "fuelEfficiency": 10.8
+  },
+  {
+    "id": "yaris",
+    "brand": "Toyota",
+    "model": "Yaris",
+    "fuelEfficiency": 16.2
+  }
+]
