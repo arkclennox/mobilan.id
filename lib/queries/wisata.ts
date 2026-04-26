@@ -76,7 +76,7 @@ export async function getWisataBySlug(slug: string): Promise<WisataPlace | null>
         wisata_category:wisata_categories(id, name, slug, icon)
       ),
       images:wisata_images(id, image_url, alt_text, sort_order),
-      activity_offers(id, provider, title, affiliate_url, image_url, price_text, note, sort_order),
+      activity_offers(id, provider, title, affiliate_url, image_url, price_text, note, sort_order, is_active),
       accommodations:wisata_accommodations(
         id, distance_text, sort_order,
         accommodation:accommodations(id, name, slug, area, short_description, image_url, provider, affiliate_url, property_type, price_label)

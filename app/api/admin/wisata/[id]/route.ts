@@ -31,7 +31,12 @@ export async function DELETE(_: NextRequest, { params }: { params: { id: string 
 export async function GET(_: NextRequest, { params }: { params: { id: string } }) {
   const { data } = await supabaseAdmin
     .from('wisata_places')
-    .select(`*, categories:wisata_place_categories(wisata_category_id), activity_offers(*)`)
+    .select(`
+      *,
+      categories:wisata_place_categories(wisata_category_id),
+      activity_offers(*),
+      linked_accommodations:wisata_accommodations(id, accommodation_id, distance_text, sort_order, accommodation:accommodations(*))
+    `)
     .eq('id', params.id)
     .single();
   return NextResponse.json(data);

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Save, Trash2, Plus, X, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Save, Trash2, Plus, X, ExternalLink, BedDouble } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -16,6 +16,14 @@ import { Badge } from '@/components/ui/badge';
 type City = { id: string; name: string; slug: string };
 type Category = { id: string; name: string; slug: string; icon: string | null };
 type Offer = { id: string; provider: string; title: string; affiliate_url: string; price_text: string | null; is_active: boolean };
+type AccommodationOption = { id: string; name: string; slug: string; city_id: string | null };
+type LinkedAccommodation = {
+  id: string; // wisata_accommodations.id
+  accommodation_id: string;
+  distance_text: string | null;
+  sort_order: number;
+  accommodation: { id: string; name: string; provider: string; property_type: string | null };
+};
 
 export default function EditWisataPage() {
   const router = useRouter();
@@ -28,10 +36,15 @@ export default function EditWisataPage() {
   const [success, setSuccess] = useState(false);
   const [cities, setCities] = useState<City[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [allAccommodations, setAllAccommodations] = useState<AccommodationOption[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [offers, setOffers] = useState<Offer[]>([]);
+  const [linkedAccommodations, setLinkedAccommodations] = useState<LinkedAccommodation[]>([]);
   const [newOffer, setNewOffer] = useState({ provider: '', title: '', affiliate_url: '', price_text: '' });
   const [showOfferForm, setShowOfferForm] = useState(false);
+  const [newAccomId, setNewAccomId] = useState('');
+  const [newAccomDistance, setNewAccomDistance] = useState('');
+  const [showAccomForm, setShowAccomForm] = useState(false);
 
   const [form, setForm] = useState({
     name: '', slug: '', city_id: '', short_description: '', full_description: '',
@@ -48,6 +61,7 @@ export default function EditWisataPage() {
     ]).then(([meta, wisata]) => {
       setCities(meta.cities || []);
       setCategories(meta.categories || []);
+      setAllAccommodations(meta.accommodations || []);
       if (wisata) {
         setForm({
           name: wisata.name || '', slug: wisata.slug || '',
@@ -63,6 +77,7 @@ export default function EditWisataPage() {
         });
         setSelectedCategories((wisata.categories || []).map((c: { wisata_category_id: string }) => c.wisata_category_id));
         setOffers(wisata.activity_offers || []);
+        setLinkedAccommodations(wisata.linked_accommodations || []);
       }
       setLoading(false);
     });
@@ -87,33 +102,20 @@ export default function EditWisataPage() {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name: form.name,
-        slug: form.slug,
-        city_id: form.city_id || null,
-        short_description: nullify(form.short_description),
-        full_description: nullify(form.full_description),
-        address: nullify(form.address),
-        opening_hours: nullify(form.opening_hours),
-        ticket_price_text: nullify(form.ticket_price_text),
-        best_time_to_visit: nullify(form.best_time_to_visit),
-        suitable_for: nullify(form.suitable_for),
-        tips: nullify(form.tips),
-        hero_image_url: nullify(form.hero_image_url),
-        seo_title: nullify(form.seo_title),
+        name: form.name, slug: form.slug, city_id: form.city_id || null,
+        short_description: nullify(form.short_description), full_description: nullify(form.full_description),
+        address: nullify(form.address), opening_hours: nullify(form.opening_hours),
+        ticket_price_text: nullify(form.ticket_price_text), best_time_to_visit: nullify(form.best_time_to_visit),
+        suitable_for: nullify(form.suitable_for), tips: nullify(form.tips),
+        hero_image_url: nullify(form.hero_image_url), seo_title: nullify(form.seo_title),
         seo_description: nullify(form.seo_description),
         latitude: form.latitude ? parseFloat(form.latitude) : null,
         longitude: form.longitude ? parseFloat(form.longitude) : null,
-        is_featured: form.is_featured,
-        is_published: form.is_published,
+        is_featured: form.is_featured, is_published: form.is_published,
         category_ids: selectedCategories,
       }),
     });
-    if (res.ok) {
-      setSuccess(true);
-    } else {
-      const d = await res.json();
-      setError(d.error || 'Terjadi kesalahan');
-    }
+    if (res.ok) { setSuccess(true); } else { const d = await res.json(); setError(d.error || 'Terjadi kesalahan'); }
     setSaving(false);
   }
 
@@ -128,7 +130,7 @@ export default function EditWisataPage() {
     const res = await fetch('/api/admin/offers', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...newOffer, wisata_place_id: id }),
+      body: JSON.stringify({ ...newOffer, wisata_place_id: id, is_active: true, sort_order: offers.length }),
     });
     if (res.ok) {
       const offer = await res.json();
@@ -141,6 +143,34 @@ export default function EditWisataPage() {
   async function deleteOffer(offerId: string) {
     await fetch(`/api/admin/offers/${offerId}`, { method: 'DELETE' });
     setOffers((prev) => prev.filter((o) => o.id !== offerId));
+  }
+
+  async function addAccommodation() {
+    if (!newAccomId) return;
+    const alreadyLinked = linkedAccommodations.some((a) => a.accommodation_id === newAccomId);
+    if (alreadyLinked) return;
+    const res = await fetch('/api/admin/wisata-accommodations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        wisata_place_id: id,
+        accommodation_id: newAccomId,
+        distance_text: newAccomDistance.trim() || null,
+        sort_order: linkedAccommodations.length,
+      }),
+    });
+    if (res.ok) {
+      const linked = await res.json();
+      setLinkedAccommodations((prev) => [...prev, linked]);
+      setNewAccomId('');
+      setNewAccomDistance('');
+      setShowAccomForm(false);
+    }
+  }
+
+  async function removeAccommodation(linkId: string) {
+    await fetch(`/api/admin/wisata-accommodations/${linkId}`, { method: 'DELETE' });
+    setLinkedAccommodations((prev) => prev.filter((a) => a.id !== linkId));
   }
 
   if (loading) return <div className="p-8 text-muted-foreground text-sm">Memuat data...</div>;
@@ -225,7 +255,7 @@ export default function EditWisataPage() {
         {/* Ticket Offers */}
         <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Ticket Offers Affiliate</h2>
+            <h2 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Tiket & Aktivitas Affiliate</h2>
             <Button type="button" size="sm" variant="outline" onClick={() => setShowOfferForm(true)}>
               <Plus className="h-3.5 w-3.5 mr-1" /> Tambah Offer
             </Button>
@@ -237,6 +267,7 @@ export default function EditWisataPage() {
                   <div className="flex items-center gap-2">
                     <Badge variant="outline" className="text-xs">{offer.provider}</Badge>
                     <span className="text-sm font-medium">{offer.title}</span>
+                    {!offer.is_active && <Badge variant="secondary" className="text-xs">Nonaktif</Badge>}
                   </div>
                   {offer.price_text && <p className="text-xs text-muted-foreground mt-0.5">{offer.price_text}</p>}
                 </div>
@@ -246,7 +277,7 @@ export default function EditWisataPage() {
               </div>
             ))}
             {offers.length === 0 && !showOfferForm && (
-              <p className="text-sm text-muted-foreground">Belum ada ticket offer. Klik "Tambah Offer" untuk menambahkan.</p>
+              <p className="text-sm text-muted-foreground">Belum ada ticket offer.</p>
             )}
           </div>
           {showOfferForm && (
@@ -254,7 +285,7 @@ export default function EditWisataPage() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <Label className="text-xs">Provider *</Label>
-                  <Input value={newOffer.provider} onChange={(e) => setNewOffer((p) => ({ ...p, provider: e.target.value }))} placeholder="Traveloka, tiket.com, Agoda" className="mt-1 h-8 text-sm" />
+                  <Input value={newOffer.provider} onChange={(e) => setNewOffer((p) => ({ ...p, provider: e.target.value }))} placeholder="Traveloka, tiket.com, Klook" className="mt-1 h-8 text-sm" />
                 </div>
                 <div>
                   <Label className="text-xs">Harga (opsional)</Label>
@@ -272,6 +303,67 @@ export default function EditWisataPage() {
               <div className="flex gap-2">
                 <Button type="button" size="sm" className="bg-brand-600 hover:bg-brand-700 h-7 text-xs" onClick={addOffer}>Simpan Offer</Button>
                 <Button type="button" size="sm" variant="ghost" className="h-7 text-xs" onClick={() => setShowOfferForm(false)}>Batal</Button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Penginapan Terdekat */}
+        <div className="bg-card border border-border rounded-xl p-5">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              <BedDouble className="h-4 w-4 text-muted-foreground" />
+              <h2 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Penginapan Terdekat</h2>
+            </div>
+            <Button type="button" size="sm" variant="outline" onClick={() => setShowAccomForm(true)}>
+              <Plus className="h-3.5 w-3.5 mr-1" /> Hubungkan
+            </Button>
+          </div>
+          <div className="space-y-2">
+            {linkedAccommodations.map((link) => (
+              <div key={link.id} className="flex items-center justify-between p-3 bg-muted/40 rounded-lg">
+                <div>
+                  <p className="text-sm font-medium">{link.accommodation?.name}</p>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    {link.accommodation?.property_type && (
+                      <Badge variant="outline" className="text-xs">{link.accommodation.property_type}</Badge>
+                    )}
+                    {link.distance_text && (
+                      <span className="text-xs text-muted-foreground">{link.distance_text}</span>
+                    )}
+                  </div>
+                </div>
+                <Button type="button" variant="ghost" size="sm" onClick={() => removeAccommodation(link.id)} className="text-red-500 hover:text-red-600 h-7 w-7 p-0">
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+            ))}
+            {linkedAccommodations.length === 0 && !showAccomForm && (
+              <p className="text-sm text-muted-foreground">Belum ada penginapan terhubung. Klik "Hubungkan" untuk menambahkan.</p>
+            )}
+          </div>
+          {showAccomForm && (
+            <div className="mt-3 p-4 border border-dashed border-brand-300 rounded-lg space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="col-span-2">
+                  <Label className="text-xs">Pilih Penginapan *</Label>
+                  <Select value={newAccomId} onValueChange={setNewAccomId}>
+                    <SelectTrigger className="mt-1 h-8 text-sm"><SelectValue placeholder="Pilih penginapan..." /></SelectTrigger>
+                    <SelectContent>
+                      {allAccommodations
+                        .filter((a) => !linkedAccommodations.some((l) => l.accommodation_id === a.id))
+                        .map((a) => <SelectItem key={a.id} value={a.id}>{a.name}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="col-span-2">
+                  <Label className="text-xs">Jarak / Keterangan (opsional)</Label>
+                  <Input value={newAccomDistance} onChange={(e) => setNewAccomDistance(e.target.value)} placeholder="±500m dari pintu masuk" className="mt-1 h-8 text-sm" />
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <Button type="button" size="sm" className="bg-brand-600 hover:bg-brand-700 h-7 text-xs" onClick={addAccommodation} disabled={!newAccomId}>Simpan</Button>
+                <Button type="button" size="sm" variant="ghost" className="h-7 text-xs" onClick={() => setShowAccomForm(false)}>Batal</Button>
               </div>
             </div>
           )}
