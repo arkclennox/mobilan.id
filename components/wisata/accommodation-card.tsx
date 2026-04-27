@@ -12,6 +12,7 @@ type Props = {
 
 export function AccommodationCard({ item, wisataName, wisataSlug }: Props) {
   const { accommodation, distance_text } = item;
+  if (!accommodation) return null;
 
   const handleClick = () => {
     if (typeof window !== 'undefined' && (window as Window & typeof globalThis & { gtag?: (...args: unknown[]) => void }).gtag) {

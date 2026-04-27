@@ -71,7 +71,7 @@ export default async function WisataDetailPage({ params }: Props) {
   };
 
   const activeOffers = (wisata.activity_offers || []).filter((o) => o.is_active);
-  const accommodations = wisata.accommodations || [];
+  const accommodations = (wisata.accommodations || []).filter((a) => a.accommodation != null);
 
   return (
     <div className="min-h-screen pt-16">
