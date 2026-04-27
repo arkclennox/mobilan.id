@@ -4,12 +4,11 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: [
-      'deepskyblue-oryx-260341.hostingersite.com',
-      'images.pexels.com',
-      'jcvtwkjpbxxedooftbso.supabase.co',
-      'res.cloudinary.com',
-      'lh3.googleusercontent.com',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
     ],
   },
   // Disable Next.js telemetry
