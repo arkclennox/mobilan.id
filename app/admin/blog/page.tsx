@@ -1,19 +1,96 @@
+'use client';
+
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
-import { Plus, Pencil, Eye, EyeOff } from 'lucide-react';
+import { Plus, Search, Eye, EyeOff, Pencil, Trash2, ChevronUp, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { getAllBlogPostsAdmin } from '@/lib/queries/blog';
+import { Input } from '@/components/ui/input';
 
-type Props = { searchParams: { page?: string } };
+type BlogRow = {
+  id: string;
+  title: string;
+  slug: string;
+  author_name: string;
+  is_published: boolean;
+  published_at: string | null;
+  created_at: string;
+};
 
-export default async function AdminBlogPage({ searchParams }: Props) {
-  const page = parseInt(searchParams.page || '1');
-  const { data, count } = await getAllBlogPostsAdmin(page);
-  const totalPages = Math.ceil((count || 0) / 20);
+type ListResponse = {
+  data: BlogRow[];
+  count: number;
+  page: number;
+  totalPages: number;
+};
 
-  function formatDate(d: string) {
-    return new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-  }
+export default function AdminBlogPage() {
+  const [rows, setRows] = useState<BlogRow[]>([]);
+  const [count, setCount] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
+
+  const [q, setQ] = useState('');
+  const [debouncedQ, setDebouncedQ] = useState('');
+  const [status, setStatus] = useState('all');
+  const [sort, setSort] = useState('created_at');
+  const [dir, setDir] = useState<'asc' | 'desc'>('desc');
+  const [page, setPage] = useState(1);
+
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => { setDebouncedQ(q); setPage(1); }, 400);
+  }, [q]);
+
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    const params = new URLSearchParams({ q: debouncedQ, status, sort, dir, page: String(page), limit: '50' });
+    const res = await fetch(`/api/admin/blog?${params}`);
+    if (res.ok) {
+      const json: ListResponse = await res.json();
+      setRows(json.data);
+      setCount(json.count ?? 0);
+      setTotalPages(json.totalPages);
+    }
+    setLoading(false);
+  }, [debouncedQ, status, sort, dir, page]);
+
+  useEffect(() => { fetchData(); }, [fetchData]);
+  useEffect(() => { setPage(1); }, [status, sort, dir]);
+
+  const toggleSort = (col: string) => {
+    if (sort === col) setDir(d => d === 'asc' ? 'desc' : 'asc');
+    else { setSort(col); setDir('desc'); }
+  };
+
+  const SortIcon = ({ col }: { col: string }) =>
+    sort !== col ? <ChevronUp className="h-3 w-3 opacity-20" /> :
+    dir === 'asc' ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />;
+
+  const togglePublished = async (row: BlogRow) => {
+    const newVal = !row.is_published;
+    setRows(prev => prev.map(r => r.id === row.id ? { ...r, is_published: newVal } : r));
+    const res = await fetch(`/api/admin/blog/${row.id}`, {
+      method: 'PATCH', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ is_published: newVal, published_at: newVal ? new Date().toISOString() : null }),
+    });
+    if (!res.ok) {
+      setRows(prev => prev.map(r => r.id === row.id ? { ...r, is_published: row.is_published } : r));
+      alert('Gagal mengubah status');
+    }
+  };
+
+  const deleteRow = async (row: BlogRow) => {
+    if (!confirm(`Hapus artikel "${row.title}"?`)) return;
+    const res = await fetch(`/api/admin/blog/${row.id}`, { method: 'DELETE' });
+    if (res.ok) setRows(prev => prev.filter(r => r.id !== row.id));
+    else alert('Gagal menghapus artikel');
+  };
+
+  const formatDate = (d: string) =>
+    new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
 
   return (
     <div>
@@ -29,61 +106,121 @@ export default async function AdminBlogPage({ searchParams }: Props) {
         </Link>
       </div>
 
+      {/* Filters */}
+      <div className="flex flex-wrap gap-3 mb-4">
+        <div className="relative flex-1 min-w-[200px]">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Cari judul artikel..."
+            value={q}
+            onChange={e => setQ(e.target.value)}
+            className="pl-9 h-9"
+          />
+        </div>
+        <select
+          value={status}
+          onChange={e => setStatus(e.target.value)}
+          className="h-9 rounded-md border border-input bg-background px-3 text-sm"
+        >
+          <option value="all">Semua Status</option>
+          <option value="published">Published</option>
+          <option value="draft">Draft</option>
+        </select>
+        <select
+          value={sort}
+          onChange={e => { setSort(e.target.value); setPage(1); }}
+          className="h-9 rounded-md border border-input bg-background px-3 text-sm"
+        >
+          <option value="created_at">Urutkan: Dibuat</option>
+          <option value="published_at">Urutkan: Dipublish</option>
+          <option value="title">Urutkan: Judul</option>
+        </select>
+        <button
+          onClick={() => setDir(d => d === 'asc' ? 'desc' : 'asc')}
+          className="h-9 px-3 rounded-md border border-input bg-background text-sm flex items-center gap-1 hover:bg-muted"
+        >
+          {dir === 'asc' ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+          {dir === 'asc' ? 'A→Z' : 'Z→A'}
+        </button>
+      </div>
+
       <div className="bg-card border border-border rounded-xl overflow-hidden">
-        <table className="w-full text-sm">
-          <thead className="bg-muted/50 border-b border-border">
-            <tr>
-              <th className="text-left px-4 py-3 font-medium">Judul</th>
-              <th className="text-left px-4 py-3 font-medium">Penulis</th>
-              <th className="text-left px-4 py-3 font-medium">Tanggal</th>
-              <th className="text-left px-4 py-3 font-medium">Status</th>
-              <th className="text-right px-4 py-3 font-medium">Aksi</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border">
-            {data.map((post) => (
-              <tr key={post.id} className="hover:bg-muted/30 transition-colors">
-                <td className="px-4 py-3 font-medium max-w-[250px] truncate">{post.title}</td>
-                <td className="px-4 py-3 text-muted-foreground">{post.author_name}</td>
-                <td className="px-4 py-3 text-muted-foreground text-xs">
-                  {post.published_at ? formatDate(post.published_at) : formatDate(post.created_at)}
-                </td>
-                <td className="px-4 py-3">
-                  {post.is_published ? (
-                    <Badge className="bg-green-100 text-green-700 border-0 text-xs">
-                      <Eye className="h-3 w-3 mr-1" /> Publish
-                    </Badge>
-                  ) : (
-                    <Badge variant="secondary" className="text-xs">
-                      <EyeOff className="h-3 w-3 mr-1" /> Draft
-                    </Badge>
-                  )}
-                </td>
-                <td className="px-4 py-3 text-right">
-                  <Link href={`/admin/blog/${post.id}`}>
-                    <Button variant="ghost" size="sm" className="h-7 px-2 text-xs">
-                      <Pencil className="h-3.5 w-3.5 mr-1" /> Edit
-                    </Button>
-                  </Link>
-                </td>
-              </tr>
-            ))}
-            {data.length === 0 && (
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="bg-muted/50 border-b border-border">
               <tr>
-                <td colSpan={5} className="px-4 py-10 text-center text-muted-foreground">
-                  Belum ada artikel. <Link href="/admin/blog/tambah" className="text-brand-600 underline">Tulis sekarang</Link>
-                </td>
+                <th className="text-left px-4 py-3 font-medium">
+                  <button onClick={() => toggleSort('title')} className="flex items-center gap-1 hover:text-brand-600">
+                    Judul <SortIcon col="title" />
+                  </button>
+                </th>
+                <th className="text-left px-4 py-3 font-medium">Penulis</th>
+                <th className="text-left px-4 py-3 font-medium">
+                  <button onClick={() => toggleSort('published_at')} className="flex items-center gap-1 hover:text-brand-600">
+                    Tanggal <SortIcon col="published_at" />
+                  </button>
+                </th>
+                <th className="text-left px-4 py-3 font-medium">Status</th>
+                <th className="text-right px-4 py-3 font-medium">Aksi</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {loading && (
+                <tr><td colSpan={5} className="px-4 py-8 text-center text-muted-foreground">Memuat...</td></tr>
+              )}
+              {!loading && rows.length === 0 && (
+                <tr>
+                  <td colSpan={5} className="px-4 py-10 text-center text-muted-foreground">
+                    Belum ada artikel. <Link href="/admin/blog/tambah" className="text-brand-600 underline">Tulis sekarang</Link>
+                  </td>
+                </tr>
+              )}
+              {!loading && rows.map(row => (
+                <tr key={row.id} className="hover:bg-muted/30 transition-colors">
+                  <td className="px-4 py-3 font-medium max-w-[300px]">
+                    <Link href={`/admin/blog/${row.id}`} className="hover:text-brand-600 truncate block">
+                      {row.title}
+                    </Link>
+                  </td>
+                  <td className="px-4 py-3 text-muted-foreground text-xs">{row.author_name}</td>
+                  <td className="px-4 py-3 text-muted-foreground text-xs">
+                    {row.published_at ? formatDate(row.published_at) : formatDate(row.created_at)}
+                  </td>
+                  <td className="px-4 py-3">
+                    <button onClick={() => togglePublished(row)} title="Klik untuk toggle status">
+                      {row.is_published
+                        ? <Badge className="bg-green-100 text-green-700 border-0 text-xs cursor-pointer hover:bg-green-200"><Eye className="h-3 w-3 mr-1" />Publish</Badge>
+                        : <Badge variant="secondary" className="text-xs cursor-pointer hover:bg-muted"><EyeOff className="h-3 w-3 mr-1" />Draft</Badge>
+                      }
+                    </button>
+                  </td>
+                  <td className="px-4 py-3 text-right">
+                    <div className="flex items-center justify-end gap-1">
+                      <Link href={`/admin/blog/${row.id}`} title="Edit">
+                        <Button variant="ghost" size="sm" className="h-7 w-7 p-0"><Pencil className="h-3.5 w-3.5" /></Button>
+                      </Link>
+                      <Button
+                        variant="ghost" size="sm"
+                        className="h-7 w-7 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+                        onClick={() => deleteRow(row)}
+                        title="Hapus"
+                      >
+                        <Trash2 className="h-3.5 w-3.5" />
+                      </Button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {totalPages > 1 && (
-        <div className="flex justify-center gap-2 mt-6">
-          {page > 1 && <Link href={`/admin/blog?page=${page - 1}`}><Button variant="outline" size="sm">← Sebelumnya</Button></Link>}
-          <span className="text-sm text-muted-foreground flex items-center px-3">Hal. {page}/{totalPages}</span>
-          {page < totalPages && <Link href={`/admin/blog?page=${page + 1}`}><Button variant="outline" size="sm">Selanjutnya →</Button></Link>}
+        <div className="flex justify-center items-center gap-2 mt-6">
+          <Button variant="outline" size="sm" disabled={page <= 1} onClick={() => setPage(p => p - 1)}>← Sebelumnya</Button>
+          <span className="text-sm text-muted-foreground px-3">Hal. {page} / {totalPages}</span>
+          <Button variant="outline" size="sm" disabled={page >= totalPages} onClick={() => setPage(p => p + 1)}>Selanjutnya →</Button>
         </div>
       )}
     </div>
