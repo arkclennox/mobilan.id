@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -35,8 +34,9 @@ export function OfferCard({ offer, wisataName, wisataSlug }: Props) {
   return (
     <div className="border border-border rounded-lg overflow-hidden hover:shadow-md transition-shadow bg-card">
       {offer.image_url && (
-        <div className="relative h-32 overflow-hidden">
-          <Image src={offer.image_url} alt={offer.title} fill className="object-cover" />
+        <div className="h-32 overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={offer.image_url} alt={offer.title} className="w-full h-full object-cover" loading="lazy" />
         </div>
       )}
       <div className="p-4">

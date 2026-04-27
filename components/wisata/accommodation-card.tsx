@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { MapPin, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -29,8 +28,9 @@ export function AccommodationCard({ item, wisataName, wisataSlug }: Props) {
   return (
     <div className="border border-border rounded-lg overflow-hidden hover:shadow-md transition-shadow bg-card flex flex-col">
       {accommodation.image_url && (
-        <div className="relative h-36 overflow-hidden">
-          <Image src={accommodation.image_url} alt={accommodation.name} fill className="object-cover" />
+        <div className="h-36 overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={accommodation.image_url} alt={accommodation.name} className="w-full h-full object-cover" loading="lazy" />
         </div>
       )}
       <div className="p-4 flex flex-col flex-1">
